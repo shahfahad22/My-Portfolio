@@ -62,6 +62,7 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
+
   return (
     <section
       id="about"
