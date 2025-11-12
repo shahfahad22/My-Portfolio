@@ -137,16 +137,20 @@ const About = () => {
               I'm <span className="text-indigo-400 font-medium">Shah Fahad</span>, a passionate
               Frontend Developer with <span className="text-indigo-400 font-medium">1+ years</span> of
               experience building modern and interactive web applications.
-            </p>
-            
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-              My focus is on writing scalable, maintainable code while paying close attention
+               My focus is on writing scalable, maintainable code while paying close attention
               to design detail and performance.
-            </p>
-            
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
               Beyond coding, I'm constantly learning and exploring new technologies to
               improve my craft.
+            </p>
+            
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+              {/* My focus is on writing scalable, maintainable code while paying close attention
+              to design detail and performance. */}
+            </p>
+            
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+              {/* Beyond coding, I'm constantly learning and exploring new technologies to
+              improve my craft. */}
             </p>
           </div>
         </div>
