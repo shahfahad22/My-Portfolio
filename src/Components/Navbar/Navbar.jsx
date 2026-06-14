@@ -4,19 +4,36 @@ import { FaDownload, FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
-  // Scroll detection
+  // Scroll detection for navbar hide/show
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      const currentScrollY = window.scrollY;
+      
+      // Update scrolled state for background change
+      if (currentScrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+      
+      // Hide/show navbar logic
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px - hide navbar
+        setIsNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar
+        setIsNavbarVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Smooth scroll function
   const handleSmoothScroll = (sectionId) => {
@@ -55,7 +72,9 @@ const Navbar = () => {
     <nav
       className={`fixed w-full top-0 z-50 backdrop-blur-md transition-all duration-300 ${
         isScrolled ? "bg-[#030A19]/80 shadow-md" : "bg-[#030A19]/100"
-      } text-white`}
+      } text-white ${
+        isNavbarVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo - Fixed with explicit font family */}
