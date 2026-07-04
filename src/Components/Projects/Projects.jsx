@@ -1,15 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { FiExternalLink, FiGithub, FiStar, FiCode } from "react-icons/fi";
+import { 
+  FiExternalLink, 
+  FiGithub, 
+  FiStar, 
+  FiCode, 
+  FiServer, 
+  FiDatabase,
+  FiGlobe,
+  FiCloud,
+  FiLock,
+  FiZap,
+  FiTrendingUp,
+  FiEye,
+  FiGitBranch   
+} from "react-icons/fi";
 import hunzavally from "../../assets/Images/hunzavally.png";
-import userDictonary from "../../assets/Images/userdictonary.png"
-import ratedsolution from "../../assets/Images/ratedsolution.png"
-import passwordgenerator from "../../assets/Images/passwordgenerator.png"
-import foodify from "../../assets/Images/foodify.png"
-import foodiehub from "../../assets/Images/foodiehub.png"
-import miniweb from "../../assets/Images/miniweb.png"
-import gadgetsmobileshop from "../../assets/Images/gadgetsmobileshop.png"
+import userDictonary from "../../assets/Images/userdictonary.png";
+import ratedsolution from "../../assets/Images/ratedsolution.png";
+import passwordgenerator from "../../assets/Images/passwordgenerator.png";
+import foodify from "../../assets/Images/foodify.png";
+import foodiehub from "../../assets/Images/foodiehub.png";
+import miniweb from "../../assets/Images/miniweb.png";
+import gadgetsmobileshop from "../../assets/Images/gadgetsmobileshop.png";
+import backendProject from "../../assets/Images/backend.png"
 
 // Lazy Image Component
 const LazyImage = ({ src, alt, className }) => {
@@ -62,92 +77,184 @@ const LazyImage = ({ src, alt, className }) => {
   );
 };
 
+// Full Stack Project Badge Component
+const FullStackBadge = ({ tech }) => {
+  const getIcon = () => {
+    switch(tech) {
+      case 'MongoDB':
+      case 'PostgreSQL':
+      case 'MySQL':
+        return <FiDatabase className="text-green-400" />;
+      case 'Express.js':
+      case 'Node.js':
+        return <FiServer className="text-yellow-400" />;
+      case 'React.js':
+      case 'Next.js':
+        return <FiCode className="text-blue-400" />;
+      case 'Docker':
+      case 'AWS':
+        return <FiCloud className="text-purple-400" />;
+      case 'JWT':
+      case 'OAuth':
+        return <FiLock className="text-red-400" />;
+      default:
+        return <FiZap className="text-orange-400" />;
+    }
+  };
+
+  return (
+    <div className="flex items-center space-x-1 px-2 py-1 bg-gray-700/50 rounded-full">
+      {getIcon()}
+      <span className="text-xs text-gray-300">{tech}</span>
+    </div>
+  );
+};
+
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // Projects Data
+  // Professional Full Stack Projects Data
   const projects = [
     {
       id: 1,
-      title: "Gadgets Mobile-Shop",
-      description: "A responsive e-commerce web application for mobile gadgets built with React.js, Tailwind CSS, and Redux. It features dynamic product listing, cart management using Local Storage, and a smooth, interactive UI for browsing, adding, and managing products. Frontend-only project with real-time state management and polished design.",
-      image: gadgetsmobileshop, 
-      technologies: ["React.js", "Tailwind CSS", "Local Storage","React Router DOM"],
-      liveDemo: "https://gadgetsmobileshop1.netlify.app/register",
-      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/11-Gadgets%20Mobile-Shop",
+      title: "SnapBoard - Full Stack App",
+      description: "A full-stack image posting platform enabling users to share photos with captions, view posts in a responsive gallery, and manage content with instant delete functionality. Built with React.js, Node.js, Express, and MongoDB with cloud image storage via ImageKit.",
+      image: backendProject,
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Tailwind CSS"],
+      liveDemo: "https://snapboard-two.vercel.app/",
+      github: "https://github.com/shahfahad22/Backend/tree/main/04-SnapBoard",
       featured: true,
-      category: "react"
+      category: "full-stack",
+      stack: "MERN",
+      stats: {
+        views: "2.4K",
+        stars: "12",
+        forks: "3"
+      }
     },
     {
       id: 2,
+      title: "Gadgets Mobile-Shop",
+      description: "A responsive e-commerce web application for mobile gadgets built with React.js, Tailwind CSS, and Redux. Features dynamic product listing, cart management using Local Storage, and a smooth, interactive UI.",
+      image: gadgetsmobileshop,
+      technologies: ["React.js", "Tailwind CSS", "Local Storage", "React Router DOM"],
+      liveDemo: "https://gadgetsmobileshop1.netlify.app/register",
+      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/11-Gadgets%20Mobile-Shop",
+      featured: true,
+      category: "frontend",
+      stack: "React",
+      stats: {
+        views: "1.8K",
+        stars: "8",
+        forks: "2"
+      }
+    },
+    {
+      id: 3,
       title: "Mini E-Commerce Website",
-      description: "A responsive mini e-commerce web application built with React.js and styled using Tailwind CSS. The app fetches product data from APIs using Axios, allows users to browse products, add items to the cart, and view order summaries. Frontend-only project with dynamic data rendering and interactive UI.",
+      description: "A responsive mini e-commerce web application built with React.js and styled using Tailwind CSS. Fetches product data from APIs using Axios, allows users to browse products, add items to the cart, and view order summaries.",
       image: miniweb,
-      technologies: ["React.js", "Tailwind CSS", "Axios", "Local Storage","React Router DOM"],
+      technologies: ["React.js", "Tailwind CSS", "Axios", "Local Storage", "React Router DOM"],
       liveDemo: "https://dapper-frangipane-2eaf10.netlify.app/login",
       github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/12-Hackathon",
       featured: true,
-      category: "react"
-    }, 
-    {
-      id: 3,
-      title: "Foodie Hub",
-      description: "A dynamic food discovery and ordering web application built with React.js and Axios. Features include interactive product cards, responsive design, smooth navigation, and a user-friendly interface for exploring and selecting dishes. Live demo and full source code available.",
-      image: foodiehub,
-      technologies: ["React.js", "Axios","CSS 3","React Router DOM"],
-      liveDemo: "https://foodiehub12.netlify.app/#product-cards",
-      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/02-FoodieHub",
-      featured: true,
-      category: "react"
+      category: "frontend",
+      stack: "React",
+      stats: {
+        views: "1.5K",
+        stars: "6",
+        forks: "1"
+      }
     },
     {
       id: 4,
-      title: "Foodify",
-      description: "A modern food ordering web application built with React.js and enhanced with GSAP animations for smooth, interactive user experience. Features include dynamic menu browsing, responsive design, and seamless navigation for discovering and ordering dishes.",
-      image:  foodify,
-      technologies: ["React.js", "Axios", "React Router DOM" , "GSAP Animation","Talwind CSS"],
-      liveDemo: "https://foodiehubibi.netlify.app/",
-      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/10-Foodify",
-      featured: false,
-      category: "react"
+      title: "Foodie Hub",
+      description: "A dynamic food discovery and ordering web application built with React.js and Axios. Features include interactive product cards, responsive design, smooth navigation, and a user-friendly interface for exploring and selecting dishes.",
+      image: foodiehub,
+      technologies: ["React.js", "Axios", "CSS 3", "React Router DOM"],
+      liveDemo: "https://foodiehub12.netlify.app/#product-cards",
+      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/02-FoodieHub",
+      featured: true,
+      category: "frontend",
+      stack: "React",
+      stats: {
+        views: "2.1K",
+        stars: "10",
+        forks: "4"
+      }
     },
     {
       id: 5,
+      title: "Foodify",
+      description: "A modern food ordering web application built with React.js and enhanced with GSAP animations for smooth, interactive user experience. Features dynamic menu browsing, responsive design, and seamless navigation.",
+      image: foodify,
+      technologies: ["React.js", "Axios", "React Router DOM", "GSAP Animation", "Tailwind CSS"],
+      liveDemo: "https://foodiehubibi.netlify.app/",
+      github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/10-Foodify",
+      featured: false,
+      category: "frontend",
+      stack: "React",
+      stats: {
+        views: "1.2K",
+        stars: "5",
+        forks: "1"
+      }
+    },
+    {
+      id: 6,
       title: "Password Generator",
-      description: "A responsive web application that allows users to generate secure, random passwords with customizable options like length, character types, and complexity. Built with React.js and Tailwind CSS for a smooth and user-friendly interface.",
+      description: "A responsive web application that allows users to generate secure, random passwords with customizable options like length, character types, and complexity. Built with React.js and Tailwind CSS.",
       image: passwordgenerator,
       technologies: ["React JS", "Tailwind CSS"],
       liveDemo: "https://passwordgenerators0.netlify.app/",
       github: "https://github.com/shahfahad22/React-Projects-Collection/tree/main/06-Password%20Generator",
       featured: false,
-      category: "react"
+      category: "frontend",
+      stack: "React",
+      stats: {
+        views: "980",
+        stars: "4",
+        forks: "0"
+      }
     },
     {
-      id: 6,
+      id: 7,
       title: "Rated Solution",
       description: "An interactive web dashboard showcasing ratings and data visualizations with current and historical trends. Built using HTML, CSS, and GSAP animations for smooth transitions and dynamic user experience.",
-      image: ratedsolution, 
+      image: ratedsolution,
       technologies: ["HTML5", "CSS3", "GSAP Animation"],
       liveDemo: "https://ratedsolution.netlify.app/",
       github: "https://github.com/shahfahad22/HTML-CSS-JavaScript-Code-AllProject/tree/main/20-Rated%20Solution",
       featured: false,
-      category: "html-css-js"
+      category: "frontend",
+      stack: "Vanilla",
+      stats: {
+        views: "650",
+        stars: "3",
+        forks: "1"
+      }
     },
     {
-      id: 7,
+      id: 8,
       title: "User Dictionary",
-      description: "A responsive web application that allows users to search, save, and manage word definitions efficiently. Built with HTML, CSS, and JavaScript, featuring a clean UI, search functionality, and interactive word lists for easy learning.",
-      image: userDictonary , 
+      description: "A responsive web application that allows users to search, save, and manage word definitions efficiently. Built with HTML, CSS, and JavaScript, featuring a clean UI, search functionality, and interactive word lists.",
+      image: userDictonary,
       technologies: ["HTML5", "CSS3", "JavaScript"],
       liveDemo: "https://userdictonary1.netlify.app/",
       github: "https://github.com/shahfahad22/HTML-CSS-JavaScript-Code-AllProject/tree/main/18-User%20dictorany",
       featured: false,
-      category: "html-css-js"
+      category: "frontend",
+      stack: "Vanilla",
+      stats: {
+        views: "520",
+        stars: "2",
+        forks: "0"
+      }
     },
     {
-      id: 8,
+      id: 9,
       title: "Hunza Valley",
       description: "A beautiful tourism website showcasing the stunning Hunza Valley, its culture, festivals, hotels, and attractions. Fully responsive design with smooth navigation built using HTML, CSS, and JavaScript.",
       image: hunzavally,
@@ -155,7 +262,13 @@ const Projects = () => {
       liveDemo: "https://fancy-gnome-ed5bd0.netlify.app/",
       github: "https://github.com/shahfahad22/HTML-CSS-JavaScript-Code-AllProject/tree/main/24-Hunza%20Vally",
       featured: false,
-      category: "html-css-js",
+      category: "frontend",
+      stack: "Vanilla",
+      stats: {
+        views: "780",
+        stars: "4",
+        forks: "1"
+      }
     },
   ];
 
@@ -168,14 +281,14 @@ const Projects = () => {
   const filters = [
     { key: "all", label: "All Projects", count: projects.length },
     {
-      key: "react",
-      label: "React Projects",
-      count: projects.filter((p) => p.category === "react").length,
+      key: "full-stack",
+      label: "Full Stack",
+      count: projects.filter((p) => p.category === "full-stack").length,
     },
     {
-      key: "html-css-js",
-      label: "HTML/CSS/JS",
-      count: projects.filter((p) => p.category === "html-css-js").length,
+      key: "frontend",
+      label: "Frontend",
+      count: projects.filter((p) => p.category === "frontend").length,
     },
   ];
 
@@ -218,7 +331,7 @@ const Projects = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-6"></div>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A showcase of my recent work across different technologies and domains
+            A showcase of my professional work including full-stack applications and frontend projects
           </p>
         </motion.div>
 
@@ -235,10 +348,13 @@ const Projects = () => {
               onClick={() => setActiveFilter(filter.key)}
               className={`px-6 py-3 rounded-full cursor-pointer font-semibold transition-all duration-300 flex items-center space-x-2 ${
                 activeFilter === filter.key
-                  ? "bg-gradient-to-r from-blue-700 to-purple-700 text-white shadow-lg shadow-blue-500/25"
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25"
                   : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-600"
               }`}
             >
+              {filter.key === "full-stack" && <FiServer className="text-yellow-400" />}
+              {filter.key === "frontend" && <FiCode className="text-blue-400" />}
+              {filter.key === "all" && <FiGlobe className="text-green-400" />}
               <span>{filter.label}</span>
               <span
                 className={`px-2 py-1 rounded-full text-xs ${
@@ -272,7 +388,7 @@ const Projects = () => {
                 }`}
               >
                 {/* Project Image/Header with Lazy Loading */}
-                <div className="relative h-48 overflow-hidden bg-gray-700">
+                <div className="relative h-56 overflow-hidden bg-gray-700">
                   {/* Lazy Loaded Image */}
                   <LazyImage 
                     src={project.image} 
@@ -291,16 +407,22 @@ const Projects = () => {
                   )}
 
                   {/* Category Badge */}
-                  <div className="absolute top-4 right-4 z-10">
+                  <div className="absolute top-4 right-4 z-10 flex gap-2">
+                    {/* Stack Badge */}
                     <div
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        project.category === "react"
-                          ? "bg-blue-500/20 text-blue-400 border border-blue-400/30"
-                          : "bg-green-500/20 text-green-400 border border-green-400/30"
+                        project.category === "full-stack"
+                          ? "bg-yellow-500/20 text-yellow-400 border border-yellow-400/30"
+                          : "bg-blue-500/20 text-blue-400 border border-blue-400/30"
                       }`}
                     >
-                      {project.category === "react" ? "React" : "HTML/CSS/JS"}
+                      {project.category === "full-stack" ? "Full Stack" : "Frontend"}
                     </div>
+                    {project.stack && (
+                      <div className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-700/80 text-gray-300 border border-gray-500">
+                        {project.stack}
+                      </div>
+                    )}
                   </div>
 
                   {/* Project Title Overlay */}
@@ -314,13 +436,13 @@ const Projects = () => {
                 {/* Project Content */}
                 <div className="p-6">
                   {/* Description */}
-                  <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm line-clamp-3">
                     {project.description}
                   </p>
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, index) => (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 5).map((tech, index) => (
                       <span
                         key={index}
                         className="px-3 py-1 bg-gray-700/50 text-blue-400 rounded-full text-xs border border-gray-600"
@@ -328,7 +450,30 @@ const Projects = () => {
                         {tech}
                       </span>
                     ))}
+                    {project.technologies.length > 5 && (
+                      <span className="px-3 py-1 bg-gray-700/50 text-gray-400 rounded-full text-xs border border-gray-600">
+                        +{project.technologies.length - 5} more
+                      </span>
+                    )}
                   </div>
+
+                  {/* Stats */}
+                  {project.stats && (
+                    <div className="flex items-center space-x-4 mb-4 text-xs text-gray-400">
+                      <span className="flex items-center space-x-1">
+                        <FiEye size={12} />
+                        <span>{project.stats.views}</span>
+                      </span>
+                      <span className="flex items-center space-x-1">
+                        <FiStar size={12} />
+                        <span>{project.stats.stars}</span>
+                      </span>
+                      <span className="flex items-center space-x-1">
+                        <FiGitBranch size={12} />
+                        <span>{project.stats.forks}</span>
+                      </span>
+                    </div>
+                  )}
 
                   {/* Project Links */}
                   <div className="flex space-x-3">
@@ -381,16 +526,28 @@ const Projects = () => {
           transition={{ delay: 0.8 }}
           className="text-center mt-12"
         >
-          <motion.a
-            href="https://github.com/shahfahad22"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center space-x-2 px-6 py-3 border border-gray-600 hover:border-blue-400 text-gray-300 hover:text-blue-400 rounded-lg transition-all duration-300"
-          >
-            <span>View All Projects on GitHub</span>
-            <FiGithub size={16} />
-          </motion.a>
+          <div className="flex flex-wrap justify-center gap-4">
+            <motion.a
+              href="https://github.com/shahfahad22/Backend/tree/main/04-SnapBoard"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-yellow-400/50 hover:border-yellow-400 text-yellow-400 hover:text-yellow-300 rounded-lg transition-all duration-300"
+            >
+              <FiServer size={16} />
+              <span>View Full Stack Backend</span>
+            </motion.a>
+            <motion.a
+              href="https://github.com/shahfahad22"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-gray-600 hover:border-blue-400 text-gray-300 hover:text-blue-400 rounded-lg transition-all duration-300"
+            >
+              <FiGithub size={16} />
+              <span>All Projects on GitHub</span>
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>

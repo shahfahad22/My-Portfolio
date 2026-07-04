@@ -30,8 +30,8 @@ const Navbar = () => {
       
       setLastScrollY(currentScrollY);
     };
-    
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -48,19 +48,17 @@ const Navbar = () => {
     }
   };
 
-  // Direct PDF download function
   const handleResumeDownload = () => {
-    const pdfUrl = '/Shah_Fahad_Frontend_Developer.pdf'; // Correct file name
+    const pdfUrl = '/Shah_Fahad_Fullstack_Developer.pdf'; 
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'Shah_Fahad_Frontend_Developer_CV.pdf';
+    link.download = 'Shah_Fahad_Fullstack_Developer_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     setIsOpen(false);
   };
 
-  // Navigation items data
   const navItems = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
@@ -77,7 +75,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo - Fixed with explicit font family */}
+        {/* Logo */}
         <h1 
           className="text-2xl font-bold cursor-pointer font-sans" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
