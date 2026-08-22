@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {  AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { 
   FiExternalLink, 
@@ -20,7 +20,7 @@ import foodiehub from "../../assets/Images/foodiehub.png";
 import miniweb from "../../assets/Images/miniweb.png";
 import gadgetsmobileshop from "../../assets/Images/gadgetsmobileshop.png";
 import backendProject from "../../assets/Images/backend.png"
-import groove from "../../assets/Images/groove.png"
+import groove from "../../assets/Images/Groove.png";
 
 // Lazy Image Component
 const LazyImage = ({ src, alt, className }) => {
