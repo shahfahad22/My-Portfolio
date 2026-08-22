@@ -7,12 +7,7 @@ import {
   FiStar, 
   FiCode, 
   FiServer, 
-  FiDatabase,
   FiGlobe,
-  FiCloud,
-  FiLock,
-  FiZap,
-  FiTrendingUp,
   FiEye,
   FiGitBranch   
 } from "react-icons/fi";
@@ -25,6 +20,7 @@ import foodiehub from "../../assets/Images/foodiehub.png";
 import miniweb from "../../assets/Images/miniweb.png";
 import gadgetsmobileshop from "../../assets/Images/gadgetsmobileshop.png";
 import backendProject from "../../assets/Images/backend.png"
+import groove from "../../assets/Images/groove.png"
 
 // Lazy Image Component
 const LazyImage = ({ src, alt, className }) => {
@@ -77,39 +73,6 @@ const LazyImage = ({ src, alt, className }) => {
   );
 };
 
-// Full Stack Project Badge Component
-const FullStackBadge = ({ tech }) => {
-  const getIcon = () => {
-    switch(tech) {
-      case 'MongoDB':
-      case 'PostgreSQL':
-      case 'MySQL':
-        return <FiDatabase className="text-green-400" />;
-      case 'Express.js':
-      case 'Node.js':
-        return <FiServer className="text-yellow-400" />;
-      case 'React.js':
-      case 'Next.js':
-        return <FiCode className="text-blue-400" />;
-      case 'Docker':
-      case 'AWS':
-        return <FiCloud className="text-purple-400" />;
-      case 'JWT':
-      case 'OAuth':
-        return <FiLock className="text-red-400" />;
-      default:
-        return <FiZap className="text-orange-400" />;
-    }
-  };
-
-  return (
-    <div className="flex items-center space-x-1 px-2 py-1 bg-gray-700/50 rounded-full">
-      {getIcon()}
-      <span className="text-xs text-gray-300">{tech}</span>
-    </div>
-  );
-};
-
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
@@ -119,6 +82,23 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Groove - Music Streaming App",
+      description: "A full-stack music streaming application that lets users browse, search, and play songs with a smooth, responsive player experience. Built end-to-end with React.js on the frontend and Node.js, Express.js, and MongoDB powering the backend, following the MERN stack architecture.",
+      image: groove,
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Tailwind CSS"],
+      liveDemo: "https://groove-music-app-pi.vercel.app/",
+      github: "https://github.com/shahfahad22/Backend/tree/main/05-Music-Stream-App",
+      featured: true,
+      category: "full-stack",
+      stack: "MERN",
+      stats: {
+        views: "2.6K",
+        stars: "14",
+        forks: "3"
+      }
+    },
+    {
+      id: 2,
       title: "SnapBoard - Full Stack App",
       description: "A full-stack image posting platform enabling users to share photos with captions, view posts in a responsive gallery, and manage content with instant delete functionality. Built with React.js, Node.js, Express, and MongoDB with cloud image storage via ImageKit.",
       image: backendProject,
@@ -135,7 +115,7 @@ const Projects = () => {
       }
     },
     {
-      id: 2,
+      id: 3,
       title: "Gadgets Mobile-Shop",
       description: "A responsive e-commerce web application for mobile gadgets built with React.js, Tailwind CSS, and Redux. Features dynamic product listing, cart management using Local Storage, and a smooth, interactive UI.",
       image: gadgetsmobileshop,
@@ -152,7 +132,7 @@ const Projects = () => {
       }
     },
     {
-      id: 3,
+      id: 4,
       title: "Mini E-Commerce Website",
       description: "A responsive mini e-commerce web application built with React.js and styled using Tailwind CSS. Fetches product data from APIs using Axios, allows users to browse products, add items to the cart, and view order summaries.",
       image: miniweb,
@@ -169,7 +149,7 @@ const Projects = () => {
       }
     },
     {
-      id: 4,
+      id: 5,
       title: "Foodie Hub",
       description: "A dynamic food discovery and ordering web application built with React.js and Axios. Features include interactive product cards, responsive design, smooth navigation, and a user-friendly interface for exploring and selecting dishes.",
       image: foodiehub,
@@ -186,7 +166,7 @@ const Projects = () => {
       }
     },
     {
-      id: 5,
+      id: 6,
       title: "Foodify",
       description: "A modern food ordering web application built with React.js and enhanced with GSAP animations for smooth, interactive user experience. Features dynamic menu browsing, responsive design, and seamless navigation.",
       image: foodify,
@@ -203,7 +183,7 @@ const Projects = () => {
       }
     },
     {
-      id: 6,
+      id: 7,
       title: "Password Generator",
       description: "A responsive web application that allows users to generate secure, random passwords with customizable options like length, character types, and complexity. Built with React.js and Tailwind CSS.",
       image: passwordgenerator,
@@ -220,7 +200,7 @@ const Projects = () => {
       }
     },
     {
-      id: 7,
+      id: 8,
       title: "Rated Solution",
       description: "An interactive web dashboard showcasing ratings and data visualizations with current and historical trends. Built using HTML, CSS, and GSAP animations for smooth transitions and dynamic user experience.",
       image: ratedsolution,
@@ -237,7 +217,7 @@ const Projects = () => {
       }
     },
     {
-      id: 8,
+      id: 9,
       title: "User Dictionary",
       description: "A responsive web application that allows users to search, save, and manage word definitions efficiently. Built with HTML, CSS, and JavaScript, featuring a clean UI, search functionality, and interactive word lists.",
       image: userDictonary,
@@ -254,7 +234,7 @@ const Projects = () => {
       }
     },
     {
-      id: 9,
+      id: 10,
       title: "Hunza Valley",
       description: "A beautiful tourism website showcasing the stunning Hunza Valley, its culture, festivals, hotels, and attractions. Fully responsive design with smooth navigation built using HTML, CSS, and JavaScript.",
       image: hunzavally,
@@ -298,17 +278,6 @@ const Projects = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
       },
     },
   };
@@ -440,9 +409,9 @@ const Projects = () => {
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
+                  {/* Technologies — full list shown, no "+X more" truncation */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 5).map((tech, index) => (
+                    {project.technologies.map((tech, index) => (
                       <span
                         key={index}
                         className="px-3 py-1 bg-gray-700/50 text-blue-400 rounded-full text-xs border border-gray-600"
@@ -450,11 +419,6 @@ const Projects = () => {
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 5 && (
-                      <span className="px-3 py-1 bg-gray-700/50 text-gray-400 rounded-full text-xs border border-gray-600">
-                        +{project.technologies.length - 5} more
-                      </span>
-                    )}
                   </div>
 
                   {/* Stats */}
@@ -528,7 +492,7 @@ const Projects = () => {
         >
           <div className="flex flex-wrap justify-center gap-4">
             <motion.a
-              href="https://github.com/shahfahad22/Backend/tree/main/04-SnapBoard"
+              href="https://groove-music-app-pi.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
